@@ -1,0 +1,44 @@
+<%- include('../../partials/header.ejs') %>
+<body>
+    <%- include('../../partials/navbar.ejs') %>
+    
+    <div class="container">
+        <hr>
+        
+            <!-- Coluna Artigo -->
+            <div class="card mx-2">
+                <div class="card-header">
+                    <h3>Novo Artigo</h3>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="/admin/articles/save">
+                        <label for="title">Artigo</label><br>
+                        <input type="text" name="title" placeholder="Título do Artigo" class="form-control" required><br>
+                        <textarea id="article" name="body" placeholder="Descrição do Artigo" class="form-control"></textarea>
+                        <label for="category">Categoria do artigo</label><br>
+                        <select class="form-control" name="category" required>
+                            <% categories.forEach((category) => { %>
+                                <option value="<%= category.id %>"><%= category.title %></option>
+                            <% }) %>
+                        </select><br>
+                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                    </form>
+                </div>
+            </div>
+            
+        
+    </div>
+</body>
+
+<%- include('../../partials/footer.ejs') %>
+
+<script src="/tinymce/tinymce.min.js"></script>
+
+<script>
+    tinymce.init({
+        selector: "#article",
+        plugins: 'image link lists table code textcolor media emoticons preview',
+        toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | forecolor backcolor emoticons',
+        language: 'pt_BR'
+    });
+</script>
