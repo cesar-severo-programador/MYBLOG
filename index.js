@@ -9,6 +9,7 @@ const articlesController = require("./articles/ArticlesController");
 
 const Article = require("./articles/Article");
 const Category = require("./categories/Category");
+const { where } = require("sequelize");
 
 
 
@@ -41,7 +42,32 @@ app.use("/", articlesController);
 //rota
 app.get("/",(req,res) => {
     Article.findAll().then(articles => {
-        res.render("index", {articles: articles});
+
+        Category.findAll().then(categories => {
+            res.render("index", {articles: articles, categories: categories});
+        });
+        
+    });
+})
+
+
+app.get("/:slug", (req, res) => {
+    var slug = req.params.slug;
+
+    Article.findOne({
+        where: {
+            slug: slug
+        }
+    }).then(article => {
+        if(article != undefined){
+            Category.findAll().then(categories => {
+                res.render("article", {article: article, categories: categories});
+            });
+        }else{
+            res.redirect("/");
+        }
+    }).catch(err => {
+        res.redirect("/");
     });
 })
 
