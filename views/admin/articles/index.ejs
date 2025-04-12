@@ -39,7 +39,7 @@
                         <td><%= article.category.title %></td>
                         <td>
 
-                            <a href="/admin/articles/edit/<%= article.id %>" class="btn btn-warning">Editar</a>
+                            <a  href="/admin/articles/edit/<%= article.id %>" class="btn btn-warning" >Editar</a>
 
                             <form method="POST" id="btnEdition" action="/articles/delete" style="display: inline;" onsubmit="confirmarDelect(event, this )">
                                 <input type="hidden" name="id" value="<%= article.id %>">

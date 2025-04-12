@@ -41,8 +41,10 @@ app.use("/", articlesController);
 
 //rota
 app.get("/",(req,res) => {
-    Article.findAll().then(articles => {
-
+    Article.findAll({
+        limit: 4,
+        order: [['id','DESC']]
+    }).then(articles => {
         Category.findAll().then(categories => {
             res.render("index", {articles: articles, categories: categories});
         });

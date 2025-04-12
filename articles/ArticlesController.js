@@ -9,8 +9,7 @@ const { or, where } = require("sequelize");
 
 router.get("/admin/articles", (req,res) => {
     Article.findAll({
-        include: [{model: Category}],
-        order: [['id','DESC']]
+        include: [{model: Category}]
     }).then(article => {
         res.render("admin/articles/index", {articles: article});
     });
@@ -105,6 +104,45 @@ router.post("/articles/update", (req, res) => {
         res.redirect("/admin/articles");
     });
 });
+
+
+//paginação
+router.get("/articles/page/:num", (req, res) => {
+    var page = req.params.num;
+    var offset = 0;
+    if(isNaN(page) || page == 1){
+        offset = 0;
+    }else {
+        offset = (parseInt(page) - 1)* 4;
+    }
+     
+    Article.findAndCountAll({
+        limit: 4,
+        offset: offset,
+        order: [['id','DESC']]
+    }).then(articles => {
+        var next;
+        if(offset + 4 >= articles.count){
+            next = false;
+        }else {
+            next = true;
+        }
+
+        var result = {
+            page: parseInt(page),
+            next: next,
+            articles: articles
+        }
+
+        Category.findAll().then(categories => {
+            res.render("admin/articles/page", {result: result, categories: categories})
+        });
+
+        //res.json(result);
+
+        });
+});
+
 
 
 
