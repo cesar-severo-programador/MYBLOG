@@ -50,7 +50,7 @@ app.get("/",(req,res) => {
     });
 })
 
-
+//rota de slug
 app.get("/:slug", (req, res) => {
     var slug = req.params.slug;
 
@@ -67,6 +67,30 @@ app.get("/:slug", (req, res) => {
             res.redirect("/");
         }
     }).catch(err => {
+        res.redirect("/");
+    });
+})
+
+
+//pagina de categoria especifica com filtro de categoria
+app.get("/category/:slug", (req, res) => {
+    var slug = req.params.slug;
+    Category.findOne({
+        where: {
+            slug: slug
+        },
+        include: [{model: Article}]
+    }).then( category => {
+        if (category != undefined) {
+
+            Category.findAll().then(categories => {
+                res.render("index", {articles: category.articles, categories: categories});
+            });
+
+        }else {
+            res.redirect("/");
+        }
+    }).catch (err => {
         res.redirect("/");
     });
 })
