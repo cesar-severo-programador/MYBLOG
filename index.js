@@ -6,10 +6,13 @@ const connection = require("./database/database");
 //controllers import
 const categoriesController = require("./categories/CategoriesController");
 const articlesController = require("./articles/ArticlesController");
+const UsersController = require("./users/UsersController");
 
 const Article = require("./articles/Article");
 const Category = require("./categories/Category");
 const { where } = require("sequelize");
+const User = require("./users/user");
+
 
 
 
@@ -37,6 +40,7 @@ connection
 //controllers
 app.use("/", categoriesController);
 app.use("/", articlesController);
+app.use("/", UsersController);
 
 
 //rota
