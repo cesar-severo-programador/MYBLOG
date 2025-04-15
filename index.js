@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
+const session = require("express-session");
 const connection = require("./database/database");
 
 //controllers import
@@ -19,6 +20,11 @@ const User = require("./users/user");
 
 //view engine
 app.set('view engine', 'ejs');
+
+//sessions
+app.use(session({
+    secret: "galinhaassadajh", cookie: {maxAge: 30000000}
+}));
 
 //static files
 app.use(express.static('public'))
@@ -43,7 +49,34 @@ app.use("/", articlesController);
 app.use("/", UsersController);
 
 
-//rota
+
+
+/*Testando section
+app.get("/section", (req, res) => {
+    req.session.treinamento = "treinando",
+    req.session.ano = "2025",
+    req.session.nome = "jhonatan",
+    req.session.email = "jhonatan@gmail.com",
+    req.session.user = {
+        nome: "cesar",
+        email: "cesar@gmail.com"
+    }
+    res.send("sessão criada");
+});
+
+app.get("/leitura", (req,res) => {
+    res.json({
+        treinamento: req.session.treinamento,
+        ano: req.session.ano,
+        nome: req.session.nome,
+        email: req.session.email,
+        user: req.session.user
+    })
+});
+
+*/
+
+//rota da pagina inicial
 app.get("/",(req,res) => {
     Article.findAll({
         limit: 4,
@@ -100,6 +133,8 @@ app.get("/category/:slug", (req, res) => {
         res.redirect("/");
     });
 })
+
+
 
 app.listen(8080, () => {
     console.log("Servidor rodando com sucesso!");
