@@ -11,7 +11,6 @@ const UsersController = require("./users/UsersController");
 
 const Article = require("./articles/Article");
 const Category = require("./categories/Category");
-const { where } = require("sequelize");
 const User = require("./users/user");
 
 
