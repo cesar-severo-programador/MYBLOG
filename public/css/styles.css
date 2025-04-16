@@ -1,0 +1,8 @@
+
+
+.p-formatacao {
+    white-space: nowrap;
+    width: 5em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

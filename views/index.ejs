@@ -1,6 +1,6 @@
 
 <%- include('partials/header.ejs') %>
-<body>
+<body id="kalina">
     <%- include('partials/homenavbar.ejs') %>
 
 
@@ -42,40 +42,72 @@
   
     <div class="container">
 
-        <div class="row m-2">
+        <div class="row g-4">
         
             
             <!--Coluna 1-->
-            <div class="col-12 col-md-9 card">
-                <h2>Ultimas Postagem</h2>
-                <% articles.forEach(article => { %>
-                    <div class="card">
-                        <div class="card-header">
-                            <h2><%= article.title %></h2>
-                        </div>
-                        <div class="div card-body">
-                            <p><%- article.body %></p>
-                            <a href="/<%= article.slug %>" class="btn btn-primary">Leia Mais..</a>
-                        </div>
-                    </div><br>
-                <% }) %>
-                <div class="row">
-                    <div class="col col-12">
-                        <a style="float: right;" href="/articles/page/2">Next >>></a>
-                    </div>
-                    
-                </div>
-            </div>
-             <!--Coluna 2-->
-            <div  class="col-12 col-md-3">
-                <div class="card-header ">
-                    <h3>Categorias</h3>
-                </div>
-                <div class="card-body">
-                    <% categories.forEach(category => { %>
-                        <a class="" href="/category/<%= category.slug %>"><%= category.title %></a><br>
+            <div class="col-12 col-md-9 ">
+                <div class="card p-3" >
+                    <h2>Ultimas Postagem</h2>
+                    <% articles.forEach(article => { %>
+                        <div class="card">
+                            <div class="card-header">
+                                <h2><%= article.title %></h2>
+                            </div>
+                            <div class="div card-body">
+                                <p><%- article.body.substring(0, 200) %> ...</p>
+                                <a href="/<%= article.slug %>" class="btn btn-primary">Leia Mais..</a>
+                            </div>
+                        </div><br>
                     <% }) %>
+
+                    <div class="row">
+                        <div class="col col-12 ">
+                            <a style="float: right;" href="/articles/page/2">Next >>></a>
+                        </div>
+                        
+                    </div>
                 </div>
+                
+
+            </div>
+             <!--Coluna 2 categoria-->
+            <div  class="col-12 col-md-3">
+                <div class="card">
+                    <div class="card-header ">
+                        <h3>Categorias</h3>
+                    </div>
+                    <div class="card-body">
+                        <% categories.forEach(category => { %>
+                            <a class="" href="/category/<%= category.slug %>"><%= category.title %></a><br>
+                            
+                        <% }) %>
+                    </div>
+                </div><br>
+                <!--Coluna 2 ADS-->
+                <div class="card">
+                    <div class="card-header ">
+                        <h3>Anúncio</h3>
+                    </div>
+                    <div class="card-body">
+                        <img src="/img/bannerads.png" alt="Baner Anuncio">
+                    </div>
+                </div><br>
+                <!--Coluna 2 Noticias-->
+                <div class="card">
+                    <div class="card-header ">
+                        <h3>Noticias</h3>
+                    </div>
+                    <div class="card-body">
+                        <% articles.forEach(article => { %>
+                            
+                            <a class="" href="/<%= article.slug %>"><%- article.title.substring(0, 20) %> ...</a><br>
+                            <p><%- article.body.substring(0, 60) %> ...</p><hr>
+                            
+                        <% }) %>
+                    </div>
+                </div>
+
                 
                 
                 
