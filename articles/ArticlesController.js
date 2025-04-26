@@ -4,7 +4,20 @@ const Category = require("../categories/Category");
 const Article = require("./Article");
 const slugify = require("slugify");
 const adminAuth = require("../middlewares/adminAuth");
+const multer = require("multer");
+const path = require("path");
 
+// Configuração do Multer
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "./public/uploads/articles"); // Pasta onde serão salvas as imagens
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + path.extname(file.originalname)); // Exemplo: 1714152345000.png
+    }
+});
+
+const upload = multer({ storage: storage });
 
 
 router.get("/admin/articles", adminAuth, (req,res) => {
@@ -23,20 +36,26 @@ router.get("/admin/articles/new", adminAuth,  (req,res) => {
     });
 });
 
-router.post("/admin/articles/save", adminAuth,  (req, res) => {
-    var title = req.body.title;
-    var body = req.body.body;
-    var category = req.body.category;
+router.post("/admin/articles/save", adminAuth, upload.single("image"), (req, res) => {
+    const { title, body, category } = req.body;
+    const image = req.file ? "/uploads/articles/" + req.file.filename : null;
 
     Article.create({
-        title: title,
+        title,
         slug: slugify(title),
-        body: body,
-        categoryId: category
+        body,
+        categoryId: category,
+        image
     }).then(() => {
+        res.redirect("/admin/articles");
+    }).catch(err => {
+        console.error(err);
         res.redirect("/admin/articles");
     });
 });
+
+
+
 
 router.post("/articles/delete", adminAuth, (req,res) => {
     var id = req.body.id;
@@ -87,23 +106,29 @@ router.get("/admin/articles/edit/:id", adminAuth, (req,res) => {
 
 });
 
-router.post("/articles/update", adminAuth, (req, res) => {
+router.post("/articles/update", adminAuth, upload.single("image"), (req, res) => {
     var id = req.body.id;
     var title = req.body.title;
     var body = req.body.body;
     var category = req.body.category;
+    var image = req.file ? "/uploads/articles/" + req.file.filename : null;
 
-    Article.update({title: title, body: body, categoryId: category, slug: slugify(title)}, {
-        where: {
-            id: id
-        }
+    let updatedFields = { title, body, categoryId: category, slug: slugify(title) };
+
+    if (image) {
+        updatedFields.image = image;
+    }
+
+    Article.update(updatedFields, {
+        where: { id: id }
     }).then(() => {
         res.redirect("/admin/articles");
-    }).catch ( err => {
+    }).catch (err => {
         console.error(err); 
         res.redirect("/admin/articles");
     });
 });
+
 
 
 //paginação

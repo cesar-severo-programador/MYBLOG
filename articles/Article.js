@@ -14,6 +14,10 @@ const Article = connection.define('articles', {
     body: {
         type: Sequelize.TEXT,
         allowNull: false
+    },
+    image: {
+        type: Sequelize.STRING,
+        allowNull: true
     }
 })
 
