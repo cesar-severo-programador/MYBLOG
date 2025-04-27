@@ -16,6 +16,7 @@
     --text-sm:400 14px/160% var(--font-family);
 }
 
+
 body {
     background-color: var(--bg-color);
     color: var(--text-color-primary);
@@ -28,4 +29,38 @@ body {
     padding: 10px;
     border-radius: 5px;
     margin: 5px;
+}
+
+label {
+    display: block; 
+    margin-bottom: 5px; 
+    font: 400 14px/160% 'Archivo', sans-serif; 
+    color: var(--text-color-secondary);
+}
+select {
+    background-color: var(--stroke-color);
+    color: var(--text-color-primary);
+    border: 1px solid var(--stroke-color);
+    padding: 8px 12px;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    appearance: none; 
+}
+
+input {
+    background-color: var(--stroke-color);
+    color: var(--text-color-primary);
+    border: 1px solid var(--stroke-color);
+    padding: 8px 12px;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+  
+}
+
+h1 {
+    font: var(--h1);
 }

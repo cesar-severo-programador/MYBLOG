@@ -1,56 +1,62 @@
 <%- include('../../partials/header.ejs') %>
 <body>
-    <%- include('../../partials/navbar.ejs') %>
-    
-    
-    
-    <div class="container">
 
-        <hr>
-        <div class="header row m-2 m-2">
-            <div class="col-12 col-md-8">
-                <h2>Artigos</h2><br>
+    <div class="row">
+        <%- include('../../partials/navbar.ejs') %>
+        <nav class="menu  col">
+            <div class="logout-menu space">
+                <h1>Artigos</h1>
+                <div class="col-12 col-md-3">
+                    <a class="btn btn-primary" href="/admin/articles/new"  >Novo Artigo</a>
+                </div>
+                <a href="/logout" class="nav-link">Logout</a>    
             </div>
-            <div class="col-12 col-md-3">
-                <a class="btn btn-primary" href="/admin/articles/new"  >Novo Artigo</a>
+
+            <div class="tabela-article space">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Titulo</th>
+                            <th>Slug</th>
+                            <th>Categoria</th>
+                            <th>Editar</th>
+                            <th>Deletar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% articles.forEach(article => { %>
+                            <tr>
+                                <td><%= article.id %></td>
+                                <td><%= article.title %></td>
+                                <td><%= article.slug %></td>
+                                <td><%= article.category.title %></td>
+                                <td>
+        
+                                    <a  href="/admin/articles/edit/<%= article.id %>" class="btn btn-warning" >Editar</a>
+
+                                </td>
+                                <td>
+                                    <form method="POST" id="btnEdition" action="/articles/delete" style="display: inline;" onsubmit="confirmarDelect(event, this )">
+                                        <input type="hidden" name="id" value="<%= article.id %>">
+                                        <button class="btn btn-danger">Deletar</button>   
+                                    </form>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
             </div>
-        </div>
-        
 
-        
-        
-        
-        <table class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Titulo</th>
-                    <th>Slug</th>
-                    <th>Categoria</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% articles.forEach(article => { %>
-                    <tr>
-                        <td><%= article.id %></td>
-                        <td><%= article.title %></td>
-                        <td><%= article.slug %></td>
-                        <td><%= article.category.title %></td>
-                        <td>
-
-                            <a  href="/admin/articles/edit/<%= article.id %>" class="btn btn-warning" >Editar</a>
-
-                            <form method="POST" id="btnEdition" action="/articles/delete" style="display: inline;" onsubmit="confirmarDelect(event, this )">
-                                <input type="hidden" name="id" value="<%= article.id %>">
-                                <button class="btn btn-danger">Deletar</button>   
-                            </form>
-                        </td>
-                    </tr>
-                <% }) %>
-            </tbody>
-        </table>
+        </nav>
     </div>
+    
+
+
+    
+    
+    
+
 </body>
 
 <%- include('../../partials/footer.ejs') %>
