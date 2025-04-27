@@ -33,7 +33,11 @@
                             </div>
 
                             <div class="form-group">
-                                <input type="file" name="image" class="input-total">
+                                <div>
+                                      <img id="preview" src="/img/img-padrao.png" alt="Imagem padrão" class="img-preview">      
+                                </div><br>
+                                  
+                                <input type="file" name="image" class="input-total" id="imageInput">
                                 <label for="category">Categoria do artigo</label>
                                 <select class="" name="category" required>
                                     <% categories.forEach((category) => { %>
@@ -72,5 +76,12 @@
         language: 'pt_BR',
         skin: "oxide-dark",
         content_css: "dark"
+    });
+    document.getElementById('imageInput').addEventListener('change', function(event) {
+        const [file] = event.target.files;
+        if (file) {
+            const preview = document.getElementById('preview');
+            preview.src = URL.createObjectURL(file);
+        }
     });
 </script>

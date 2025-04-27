@@ -1,41 +1,70 @@
 <%- include('../../partials/header.ejs') %>
 <body>
-    <%- include('../../partials/navbar.ejs') %>
-    
-    <div class="container">
-        <hr>
-        
-            <!-- Coluna Artigo -->
-            <div class="card mx-2">
-                <div class="card-header">
-                    <h3>Editar Artigo</h3>
-                </div>
-                <div class="card-body">
-                    <form method="POST" action="/articles/update">
-                        <input type="hidden" name="id" value="<%= article.id %>">
-                        <label for="title">Artigo</label><br>
-                        <input type="text" name="title" placeholder="Título do Artigo" class="form-control" required value="<%= article.title %>"><br>
-                        <textarea id="article" name="body" placeholder="Descrição do Artigo" class="form-control">
-                            <%- article.body %>
-                        </textarea>
-                        <label for="category">Categoria do artigo</label><br>
-                        <select class="form-control" name="category" required>
-                            <% categories.forEach((category) => { %>
-                                <% if(category.id == article.categoryId) { %>
-                                    <option value="<%= category.id %>" selected><%= category.title %></option>
-                                <% }else { %>
-                                    <option value="<%= category.id %>"><%= category.title %></option>
-                                <% } %>
 
-                                
-                            <% }) %>
-                        </select><br>
-                        <button type="submit" class="btn btn-primary">Atualizar</button>
-                    </form>
+    <div class="row">
+        <%- include('../../partials/navbar.ejs') %>
+        <nav class="menu  col">
+            <div class="logout-menu space">
+                <h1><%= article.title %></h1>
+                <div class="col-12 col-md-3">
+                    <a class="btn btn-primary" href="/admin/articles/new"  >Novo Artigo</a>
                 </div>
+                <a href="/logout" class="nav-link">Logout</a>    
             </div>
-            
-        
+
+            <div class="container">
+                <form method="Post"  action="/articles/update" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-7 space">
+                            <div class="card-header">
+                                <h3>Editar Artigo</h3>
+                            </div>
+                            <div class="card-body">
+                                    <input type="hidden" name="id" value="<%= article.id %>">
+                                    <label for="title">Artigo</label><br>
+                                    <input type="text" name="title" placeholder="Título do Artigo" class="" required value="<%= article.title %>"><br>
+                                    <textarea id="article" name="body" placeholder="Descrição do Artigo" class="form-control">
+                                        <%- article.body %>
+                                    </textarea><br>
+
+
+                                    <button type="submit" class="btn btn-primary">Atualizar</button>
+                            </div>
+                        </div>
+                        <div class="col space">
+                            <div class="card-header">
+                                <h3>Imagem</h3>
+                            </div>
+                            <div class="form-group">
+                                <div>
+                                    <% if(article.image) { %>
+                                      <img id="preview" src="<%= article.image %>" alt="Imagem do artigo" class="img-preview">
+                                    <% } else { %>
+                                      <img id="preview" src="/img/img-padrao.png" alt="Imagem padrão" class="img-preview">
+                                    <% } %>
+                                </div><br>
+                                  
+                                <input type="file" name="image" class="input-total" id="imageInput">
+                                <label for="category">Categoria do artigo</label>
+                                <select  name="category" required>
+                                    <% categories.forEach((category) => { %>
+                                        <% if(category.id == article.categoryId) { %>
+                                            <option value="<%= category.id %>" selected><%= category.title %></option>
+                                        <% }else { %>
+                                            <option value="<%= category.id %>"><%= category.title %></option>
+                                        <% } %>     
+                                    <% }) %>
+                                </select><br>
+
+
+                            </div>
+
+                            
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </nav>
     </div>
 </body>
 
@@ -48,6 +77,16 @@
         selector: "#article",
         plugins: 'image link lists table code textcolor media emoticons preview',
         toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | forecolor backcolor emoticons',
-        language: 'pt_BR'
+        language: 'pt_BR',
+        skin: "oxide-dark",
+        content_css: "dark"
+    });
+
+    document.getElementById('imageInput').addEventListener('change', function(event) {
+        const [file] = event.target.files;
+        if (file) {
+            const preview = document.getElementById('preview');
+            preview.src = URL.createObjectURL(file);
+        }
     });
 </script>

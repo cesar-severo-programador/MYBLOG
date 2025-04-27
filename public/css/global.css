@@ -61,6 +61,11 @@ input {
   
 }
 
+.img-preview {
+    width: 100%;
+    object-fit: cover;
+}
+
 h1 {
     font: var(--h1);
 }
