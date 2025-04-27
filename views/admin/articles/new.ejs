@@ -1,34 +1,78 @@
 <%- include('../../partials/header.ejs') %>
 <body>
-    <%- include('../../partials/navbar.ejs') %>
-    
-    <div class="container">
-        <hr>
-        
-            <!-- Coluna Artigo -->
-            <div class="card mx-2">
-                <div class="card-header">
-                    <h3>Novo Artigo</h3>
-                </div>
-                <div class="card-body">
-                    <form method="POST" action="/admin/articles/save" enctype="multipart/form-data">
-                        <label for="title">Artigo</label><br>
-                        <input type="text" name="title" placeholder="Título do Artigo" class="form-control" required><br>
-                        <textarea id="article" name="body" placeholder="Descrição do Artigo" class="form-control"></textarea>
-                        <label for="category">Categoria do artigo</label><br>
-                        <select class="form-control" name="category" required>
-                            <% categories.forEach((category) => { %>
-                                <option value="<%= category.id %>"><%= category.title %></option>
-                            <% }) %>
-                        </select><br>
-                        <input type="file" name="image"><br>
-                        <button type="submit" class="btn btn-primary">Cadastrar</button>
-                    </form>
-                </div>
-            </div>
+
+    <div class="row">
+        <aside class="sidebar col-2">
+            <h2>MyBlog</h2>
             
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <div class="menu-item"><a href="#" class="nav-link">Dashboard Home</a></div>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/categories" class="nav-link">Categorias</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/articles" class="nav-link">Artigos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/logout" class="nav-link">Logout</a>
+                </li>
         
+            </ul>
+        </aside>
+        <nav class="menu col ">
+            <div class="logout-menu space">
+                <p>Meu Dashboard</p>
+                <a href="/logout" class="nav-link">Logout</a>         
+            </div>
+
+            <div class="container">
+                <form method="Post"  action="/admin/articles/save" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-7 space">
+                            <div class="card-header">
+                                <h3>Novo Artigo</h3>
+                            </div>
+                            <div class="card-body">
+                                <form method="POST" action="/admin/articles/save" enctype="multipart/form-data">
+                                    <label for="title">Artigo</label><br>
+                                    <input type="text" name="title" placeholder="Título do Artigo" class="form-control" required><br>
+                                    <textarea id="article" name="body" placeholder="Descrição do Artigo" class="form-control"></textarea><br>
+                                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col space">
+                            <div class="card-header">
+                                <h3>Imagem</h3>
+                            </div>
+                            <div class="card">
+                                <input type="file" name="image">
+                                <label for="category" style="color: black;">Categoria do artigo</label>
+                                <select class="form-control" name="category" required>
+                                    <% categories.forEach((category) => { %>
+                                        <option value="<%= category.id %>"><%= category.title %></option>
+                                    <% }) %>
+                                </select><br>
+                            </div>
+                        </div>
+                    </div>
+        
+                </form>
+                <hr>
+                
+
+                    
+                
+            </div>
+        </nav>
+
     </div>
+
+
+    
+
 </body>
 
 <%- include('../../partials/footer.ejs') %>
@@ -40,6 +84,8 @@
         selector: "#article",
         plugins: 'image link lists table code textcolor media emoticons preview',
         toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | forecolor backcolor emoticons',
-        language: 'pt_BR'
+        language: 'pt_BR',
+        skin: "oxide-dark",
+        content_css: "dark"
     });
 </script>

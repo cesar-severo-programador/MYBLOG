@@ -1,0 +1,18 @@
+
+
+.sidebar {
+    background-color: var(--stroke-color);
+    color: var(--text-color-primary);
+    padding: 50px;
+}
+
+
+.logout-menu {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--bg-color2);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+
