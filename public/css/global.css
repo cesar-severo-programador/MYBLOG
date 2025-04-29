@@ -69,3 +69,7 @@ input {
 h1 {
     font: var(--h1);
 }
+
+.container {
+    margin-top: 20px;
+}

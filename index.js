@@ -22,7 +22,10 @@ app.set('view engine', 'ejs');
 
 //sessions
 app.use(session({
-    secret: "galinhaassadajh", cookie: {maxAge: 30000000}
+    secret: "galinhaassadajh",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {maxAge: 30000000}
 }));
 
 //static files

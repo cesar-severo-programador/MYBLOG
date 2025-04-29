@@ -1,25 +1,40 @@
 <%- include('../../partials/header.ejs') %>
 <body>
-    <%- include('../../partials/navbar.ejs') %>
-    
-    
-    
-    <div class="container">
-        <hr>
-        <div class="card col-12 col-md-6">
-            <div class="card-header">
-                <h3>Edição de categoria</h3>
-            </div>
-            <div class="card-body">
-                <form method="POST" action="/categories/update">
-                    <label for="title">Categoria</label><br>
-                    <input type="text" name="title" class="form-control" value="<%= category.title %>" required><br>
-                    <input type="hidden" name="id" value="<%= category.id %>">
-                    <button type="submit" class="btn btn-primary">Atualizar</button>
-                </form>
-            </div>
-        </div>
+    <div class="row">
+        <%- include('../../partials/navbar.ejs') %>
+        <nav class="menu  col">
+            <nav class="menu  col">
+                <div class="logout-menu space">
+                    <h1><%= category.title %></h1>
+                    <div class="col-12 col-md-3">
+                        <a class="btn btn-primary" href="/admin/categories/new"  >Nova Categoria</a>
+                    </div>
+                    <a href="/logout" class="nav-link">Logout</a>    
+                </div>
+                <div class="container space">
+                    <div class="col-12 col-md-12">
+                        <div class="card-header">
+                            <h3>Edição de categoria</h3>
+                        </div>
+                        <div class="card-body">
+                            <form method="POST" action="/categories/update">
+                                <label for="title">Categoria</label><br>
+                                <input type="text" name="title" value="<%= category.title %>" required><br>
+                                <input type="hidden" name="id" value="<%= category.id %>">
+                                <button type="submit" class="btn btn-primary">Atualizar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+        </nav>
     </div>
+    
+    
+    
+    
+
 </body>
 
 <%- include('../../partials/footer.ejs') %>

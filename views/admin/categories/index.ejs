@@ -1,55 +1,52 @@
 <%- include('../../partials/header.ejs') %>
 <body>
-    <%- include('../../partials/navbar.ejs') %>
-    
-    
-    
-    <div class="container">
-
-        <hr>
-        <div class="header row m-2 m-2">
-            <div class="col-12 col-md-8">
-                <h2>Categorias</h2><br>
+    <div class="row">
+        <%- include('../../partials/navbar.ejs') %>
+        <nav class="menu  col">
+            <div class="logout-menu space">
+                <h1>Categorias</h1>
+                <div class="col-12 col-md-3">
+                    <a class="btn btn-primary" href="/admin/categories/new"  >Nova Categoria</a>
+                </div>
+                <a href="/logout" class="nav-link">Logout</a>    
             </div>
-            <div class="col-12 col-md-3">
-                <a class="btn btn-primary" href="/admin/categories/new"  >Nova Categoria</a>
+            <div class="tabela-article space">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Categoria</th>
+                            <th>Slug</th>
+                            <th>Editar</th>
+                            <th>Deletar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% categories.forEach(category => { %>
+                            <tr>
+                                <td><%= category.id %></td>
+                                <td><%= category.title %></td>
+                                <td><%= category.slug %></td>
+                                <td>
+                                    <a href="/admin/categories/edit/<%= category.id %>" class="btn btn-warning">Editar</a>
+                                </td>
+                                <td>
+                                    <form method="POST" id="btnEdition" action="/categories/delete" style="display: inline;" onsubmit="confirmarDelect(event, this )">
+                                        <input type="hidden" name="id" value="<%= category.id %>">
+                                        <button class="btn btn-danger">Deletar</button>   
+                                    </form>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+    
             </div>
-        </div>
-        
+        </nav>
 
-        
-        
-        
-        <table class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Categoria</th>
-                    <th>Slug</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% categories.forEach(category => { %>
-                    <tr>
-                        <td><%= category.id %></td>
-                        <td><%= category.title %></td>
-                        <td><%= category.slug %></td>
-                        <td>
-                            <a href="/admin/categories/edit/<%= category.id %>" class="btn btn-warning">Editar</a>
 
-                            <form method="POST" id="btnEdition" action="/categories/delete" style="display: inline;" onsubmit="confirmarDelect(event, this )">
-                                <input type="hidden" name="id" value="<%= category.id %>">
-                                <button class="btn btn-danger">Deletar</button>   
-                            </form>
-                            
-                        
-                        </td>
-                    </tr>
-                <% }) %>
-            </tbody>
-        </table>
     </div>
+    
 </body>
 
 <%- include('../../partials/footer.ejs') %>
