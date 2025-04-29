@@ -1,37 +1,52 @@
 <%- include('../../partials/header.ejs') %>
 <body>
-    <%- include('../../partials/navbar.ejs') %>
-    <div class="container">
-
-        <hr>
-        <div class="header row m-2 m-2">
-            <div class="col-12 col-md-8">
-                <h2>Usuários</h2><br>
+    <div class="row">
+        <%- include('../../partials/navbar.ejs') %>
+        <nav class="menu  col">
+            <div class="logout-menu space">
+                <h1>Usuários</h1>
+                <div class="col-12 col-md-3">
+                    <a class="btn btn-primary" href="/admin/users/create"  >Novo usuário </a>
+                </div>
+                <a href="/logout" class="nav-link">Logout</a>    
             </div>
-            <div class="col-12 col-md-3">
-                <a class="btn btn-primary" href="/admin/users/create"  >Novo usuário </a>
-            </div>
-        </div>   
-        
-        <table class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Email</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% users.forEach(user => { %>
-                    <tr>
-                        <td><%= user.id %></td>
-                        <td><%= user.email %></td>
+            <div class="container">
+                <div class="tabela-article space">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Email</th>
+                                <th>Editar</th>
+                                <th>Deletar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% users.forEach(user => { %>
+                                <tr>
+                                        <td><%= user.id %></td>
+                                        <td><%= user.email %></td>
+                
+                                    
+                                    <td>
+            
+                                        <a  href="" class="btn btn-warning" >Editar</a>
 
-                    </tr>
-                <% }) %>
-            </tbody>
-        </table>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-danger">Deletar</button> 
+
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </nav>
     </div>
+
 </body>
 
 <%- include('../../partials/footer.ejs') %>
