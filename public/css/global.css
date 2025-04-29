@@ -1,3 +1,8 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 :root {
     --brand-color-light: #60A5FA;
     --brand-color-dark: #1D4ED8;
@@ -22,6 +27,18 @@ body {
     color: var(--text-color-primary);
     font: var(--text);
 
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+a:hover {
+    color: var(--brand-color-light);
+}
+
+h1, h2, h3 {
+    font: inherit;
 }
 
 .space {

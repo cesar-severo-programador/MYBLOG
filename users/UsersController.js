@@ -76,6 +76,61 @@ router.post("/authenticate", (req, res) => {
     })
 });
 
+//Deletando usuario
+router.post("/users/delete", (req,res) => {
+    var id = req.body.id;
+
+    if(id != undefined){
+        if(!isNaN (id)){
+
+            User.destroy({
+                where: {
+                    id: id
+                }
+            }).then(() => {
+                res.redirect("/admin/users");
+            });
+        }else { ///não é um numero
+            res.redirect("/admin/users");
+        }
+
+    }else { //null
+        res.redirect("/admin/users");
+    }
+        
+
+});
+
+//Editando Usuários
+
+
+/*
+//Editando Artigos
+router.get("/admin/articles/edit/:id", adminAuth, (req,res) => {
+    var id = req.params.id;
+
+    if(!/^\d+$/.test(id)){
+        return res.redirect("/admin/articles");    
+    }
+
+    Article.findByPk(id).then(article => {
+
+        if(article != undefined) {
+
+            Category.findAll().then(categories => {
+                res.render("admin/articles/edit", {categories: categories, article: article});
+            });
+            
+        }else {
+            res.redirect("/admin/articles");
+        }
+
+    }).catch ( err => {
+        res.redirect("/admin/articles");
+    });
+
+});
+*/
 //fazendo logout
 router.get("/logout", (req, res) => {
     req.session.user = undefined;

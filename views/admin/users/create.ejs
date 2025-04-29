@@ -1,30 +1,36 @@
 <%- include('../../partials/header.ejs') %>
 <body>
-    <%- include('../../partials/navbar.ejs') %>
-
-    <div class="container">
-
-        <form action="/users/create" method="POST">
-            <br>
-
-            <div class="card">
-                <div class="card-header">
-                    <h3>Cadastro de Usuários</h3>
+    <div class="row">
+        <%- include('../../partials/navbar.ejs') %>
+        <nav class="menu  col">
+            <div class="logout-menu space">
+                <h1>Novo Usuário</h1>
+                <div class="col-12 col-md-3">
+                    <a class="btn btn-primary" href="/admin/categories"  >Todos Usuários</a>
                 </div>
-                <div class="card-body">
-                    <label>Nome:</label>
-                    <input class="form-control" type="email" name="email" placeholder="Digite seu Email" ><br>
-                    <label>Password:</label>
-                    <input class="form-control" type="password" name="password" placeholder="Digite sua senha" ><br><br>
-                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                <a href="/logout" class="nav-link">Logout</a>    
+            </div>
+            <div class="container space">
+                <div class="col-12 col-md-12">
+                    <div class="card-header">
+                        <h3>Cadastro de Usuários</h3>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" action="/users/create">
+                            <label>Nome:</label>
+                            <input  type="email" name="email" placeholder="Digite seu Email" ><br>
+                            <label>Password:</label>
+                            <input  type="password" name="password" placeholder="Digite sua senha" ><br><br>
+                            <button type="submit" class="btn btn-primary">Cadastrar</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-
-            
-        </form>
-
-        
+        </nav>
     </div>
+
+
+
 
     
 
