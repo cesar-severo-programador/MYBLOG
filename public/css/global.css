@@ -41,6 +41,20 @@ h1, h2, h3 {
     font: inherit;
 }
 
+.containerp {
+    max-width: 1280px;
+    padding-inline: 32px;
+    margin-inline: auto;
+}
+
+.grid {
+    display: grid;
+}
+
+.grid-flow-col {
+    grid-auto-flow: column;
+}
+
 .space {
     background-color: var(--bg-color2);
     padding: 10px;
