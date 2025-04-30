@@ -14,12 +14,12 @@
     </nav>
     <nav id="menu-secundary"  class="grid grid-flow-col">
         
-                <a href="#"></a>Home</a>
+        <a href="#"></a>Home</a>
             
                 <% categories.forEach(category => { %>
 
                     
-                        <a href="/category/<%= category.slug %>" ><%= category.title %></a> |
+                        <a href="/category/<%= category.slug %>" ><%= category.title %></a>
                     
         
                 <% }) %>
@@ -27,28 +27,3 @@
         
     </nav>
 </header>
-
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="/">
-        My Blog
-    </a>
-
-    <ul class="navbar-nav mr-auto">
-
-        <li class="nav-item">
-            <a href="/" class="nav-link">Home</a>
-        </li>
-
-        <% categories.forEach(category => { %>
-
-            <li class="nav-item">
-                <a href="/category/<%= category.slug %>" class="nav-link"><%= category.title %></a>
-            </li>
-
-        <% }) %>
-
-
-        
-    </ul>
-</nav>

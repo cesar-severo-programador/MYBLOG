@@ -4,6 +4,28 @@
     <%- include('partials/homenavbar.ejs') %>
 
 
+    <main class="grid containerp">
+        <section id="featured" class="grid grid-flow-col gap-16 grid-main">
+    
+            <% if (articles.length > 0) { %>
+                <div >
+                    <img src="<%= articles[0].image %>" alt="<%= articles[0].title %>">
+                </div>
+    
+                <div class="grid grid-col-2 gap-16">
+                    <% articles.slice(1).forEach(article => { %>
+                        <div>
+                            <img src="<%= article.image %>" alt="...">
+                        </div>
+                    <% }) %>
+                </div>
+    
+            <% } %>
+    
+        </section>
+    </main>
+
+
 
     <main>
         <section class="gallery" id="gallery2">

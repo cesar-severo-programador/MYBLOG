@@ -81,7 +81,7 @@ app.get("/leitura", (req,res) => {
 //rota da pagina inicial
 app.get("/",(req,res) => {
     Article.findAll({
-        limit: 4,
+        limit: 5,
         order: [['id','DESC']]
     }).then(articles => {
         Category.findAll().then(categories => {
