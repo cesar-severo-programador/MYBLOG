@@ -2,14 +2,15 @@
 
     img {
         height: 100%;
-        object-fit: cover;
-        
+        object-fit: cover;  
         
     }
     .cardp {
+        margin-top: 5px;
         position: relative;
         overflow: hidden;
         border-radius: 4px;
+        
         &::before {
             content:"";
             position: absolute;
@@ -21,5 +22,19 @@
                 #020617 100%
             );
         }
+
+        
+
+        figcaption {
+            position: absolute;
+            bottom: 0;
+            padding: 24px;
+
+            h2 {
+                margin-top: 8px;
+            }
+        }
     }
+
+
 }

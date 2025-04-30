@@ -82,7 +82,8 @@ app.get("/leitura", (req,res) => {
 app.get("/",(req,res) => {
     Article.findAll({
         limit: 5,
-        order: [['id','DESC']]
+        order: [['id','DESC']],
+        include: [{ model: Category }]
     }).then(articles => {
         Category.findAll().then(categories => {
             res.render("index", {articles: articles, categories: categories});
