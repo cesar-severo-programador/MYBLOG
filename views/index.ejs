@@ -37,6 +37,41 @@
             <% } %>
     
         </section>
+
+        <section id="weekly">
+            <header class="grid grid-flow-col">
+                <h3>Confira também</h3>
+                <a href="#" class="grid grid-flow-col">
+                    <strong>Ver Tudo</strong>
+                </a>
+                <span></span>
+            </header>
+
+            <div class="grid gap-16">
+
+                <figure>
+                    <span class="content-tag">Veicúlos</span>
+                    <img src="/assets/images/Image 06.png" alt="Imagem de um carro">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        Optio, amet voluptas praesentium cum architecto aut voluptates, 
+                        aspernatur enim cupiditate suscipit atque eum eos 
+                        porro dolor incidunt culpa? Quod, dolor eos?</p>
+                </figure>
+                <% articles.slice(1).forEach(article => { %>
+                    <figure class="cardp">
+                        <a href="/<%= article.slug %>">
+                            <img src="<%= article.image %>" alt="<%= article.title %>">
+                            <figcaption>
+                                <span class="content-tag"><%= article.category ? article.category.title : '' %></span>
+                                <h2 class="text-lg"><%- article.title.substring(0, 200) %>..</h2>
+                                <p><%- article.body.substring(0, 200) %> ...</p>
+                            </figcaption>
+                        </a>
+                    </figure>
+                <% }) %>
+
+            </div>
+        </section>
     </main>
 
 
