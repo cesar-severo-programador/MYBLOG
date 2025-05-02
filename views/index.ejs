@@ -21,17 +21,20 @@
                 </figure>
     
                 <div class="grid grid-col-2 gap-16" >
-                    <% articles.slice(1).forEach(article => { %>
+                    <%
+                    const indicesDesejados = [1, 2, 3, 4];
+
+                    articles.filter((article, index) => indicesDesejados.includes(index)).forEach(article => { %>
                         <figure class="cardp">
-                            <a href="/<%= article.slug %>">
-                                <img src="<%= article.image %>" alt="<%= article.title %>">
-                                <figcaption>
-                                    <span class="content-tag"><%= article.category ? article.category.title : '' %></span>
-                                    <h2 class="text-lg"><%- article.title.substring(0, 50) %>..</h2>
-                                </figcaption>
-                            </a>
+                        <a href="/<%= article.slug %>">
+                            <img src="<%= article.image %>" alt="<%= article.title %>">
+                            <figcaption>
+                            <span class="content-tag"><%= article.category ? article.category.title : '' %></span>
+                            <h2 class="text-lg"><%- article.title.substring(0, 50) %>..</h2>
+                            </figcaption>
+                        </a>
                         </figure>
-                    <% }) %>
+                    <% }); %>
                 </div>
     
             <% } %>
@@ -66,7 +69,7 @@
             </div>
         </section>
 
-        <section id="ia">
+        <section id="ai">
             <header class="grid grid-flow-col">
                 <h3>Destaque de hoje</h3>
                 <a href="#" class="grid grid-flow-col">
@@ -79,15 +82,18 @@
                     <article class="grid grid-flow-col gap-16">
                         
                             <div>
-                                <span class="content-tag"><%= article.category ? article.category.title : '' %></span>
-                                <h3 class="text-lg">
-                                    <%- article.title.substring(0, 50) %>..
-                                </h3>
-                                <p class="text-sm"><%- article.body.substring(0, 200) %>..</p>
-                                
+                                <a href="/<%= article.slug %>">
+                                    <span class="content-tag"><%= article.category ? article.category.title : '' %></span>
+                                    <h3 class="text-lg">
+                                        <%- article.title.substring(0, 50) %>..
+                                    </h3>
+                                    <p class="text-sm"><%- article.body.substring(0, 200) %>..</p>
+                                </a>
                             </div>
                             <div>
-                                <img src="<%= article.image %>" alt="<%= article.title %>">
+                                <a href="/<%= article.slug %>">
+                                    <img src="<%= article.image %>" alt="<%= article.title %>">
+                                </a>
                             </div>
                         
                     </article>
@@ -95,166 +101,54 @@
             </div>
         </section>
 
-        <!--
-        
-                <% articles.slice(1).forEach(article => { %>
-                    <figure class="">
-                        <a href="/<%= article.slug %>">
-                            <span class="content-tag"><%= article.category ? article.category.title : '' %></span>
-                            <img src="<%= article.image %>" alt="<%= article.title %>">
-                            <figcaption>
-                                <h2 class="text-lg"><%- article.title.substring(0, 50) %>..</h2>
-                                <p><%- article.body.substring(0, 100) %> ...</p>
-                            </figcaption>
-                        </a>
-                    </figure>
-                <% }) %>
-        -->
-
-        <div id="ads">
-            <img src="/assets/Ads.png" alt="Propaganda">
-        </div>
-
-        <section id="more">
-            <header class="grid grid-flow-col">
-                <h3>Viu isso aqui?</h3>
-                <a href="#" class="grid grid-flow-col">
-                    <strong>Ver Tudo</strong>
-                    <span></span>
-                </a>
-            </header>
-
-            <div class="grid gap-32">
-                <% articles.slice(1).forEach(article => { %>
-                    <article class="grid grid-flow-col gap-16">
-                        
-                            <div>
-                                <img src="<%= article.image %>" alt="<%= article.title %>">
-                            </div>
-                            <div>
-                                <span class="content-tag"><%= article.category ? article.category.title : '' %></span>
-                                <h3 class="text-lg">
-                                    <%- article.title.substring(0, 50) %>..
-                                </h3>                                
-                            </div>
-
-                       
-                    </article>
-                <% }) %>
+        <aside>
+            <div id="ads">
+                <img src="/assets/Ads.png" alt="Propaganda">
             </div>
-        </section>
+    
+            <section id="more">
+                <header class="grid grid-flow-col">
+                    <h3>Viu isso aqui?</h3>
+                    <a href="#" class="grid grid-flow-col">
+                        <strong>Ver Tudo</strong>
+                        <span></span>
+                    </a>
+                </header>
+    
+                <div class="grid gap-32">
+                    <% articles.slice(0).forEach(article => { %>
+                        <article class="grid grid-flow-col gap-16">
+                            
+                                <div>
+                                    <a href="/<%= article.slug %>">
+                                    <img src="<%= article.image %>" alt="<%= article.title %>">
+                                    </a> 
+                                </div>
+                                <div>
+                                    <a href="/<%= article.slug %>">
+                                    <span class="content-tag"><%= article.category ? article.category.title : '' %></span>
+                                    <h3 class="text-lg">
+                                        <%- article.title.substring(0, 200) %>..
+                                    </h3>   
+                                </a>                              
+                                </div> 
+                                                     
+                        </article>
+                    <% }) %>
+                </div>
+            </section>
+        </aside>
+
     </main>
 
-
-
-    <main>
-        <section class="gallery" id="gallery2">
-          <div class="image-container">
-            <img src="/img/bannerblog.jpg" alt="banner de uma garota">
-          </div>
-      
-          <aside class="text-overlay">
-            <h1>My Blog</h1>
-            <p>Mantenha-se informado e atualizado com as últimas notícias do mundo, tudo em um só lugar.</p>
-          </aside>
-        </section>
-    </main>
 
 
 
   
-    <div class="container">
 
-        <div class="row g-4">
-        
-            
-            <!--Coluna 1-->
-            <div class="col-12 col-md-9 ">
-                <div class="card p-3" >
-                    <h2>Ultimas Postagem</h2>
-                    <% articles.forEach(article => { %>
-                        <div class="card">
-                            <div class="card-header">
-                                <h2><%= article.title %></h2>
-                            </div>
-                            <div class="div card-body">
-                                <p><%- article.body.substring(0, 200) %> ...</p>
-                                <a href="/<%= article.slug %>" class="btn btn-primary">Leia Mais..</a>
-                            </div>
-                        </div><br>
-                    <% }) %>
-
-                    <div class="row">
-                        <div class="col col-12 ">
-                            <a style="float: right;" href="/articles/page/2">Next >>></a>
-                        </div>
-                        
-                    </div>
-                </div>
-                
-
-            </div>
-             <!--Coluna 2 categoria-->
-            <div  class="col-12 col-md-3">
-                <div class="card">
-                    <div class="card-header ">
-                        <h3>Categorias</h3>
-                    </div>
-                    <div class="card-body">
-                        <% categories.forEach(category => { %>
-                            <a class="" href="/category/<%= category.slug %>"><%= category.title %></a><br>
-                            
-                        <% }) %>
-                    </div>
-                </div><br>
-                <!--Coluna 2 ADS-->
-                <div class="card">
-                    <div class="card-header ">
-                        <h3>Anúncio</h3>
-                    </div>
-                    <div class="card-body">
-                        <img src="/img/bannerads.png" alt="Baner Anuncio" class="desktop-image">
-                        <img src="/img/banneradsmobile.png" alt="Baner Anuncio mobille" class="mobile-image">
-                    </div>
-                </div><br>
-                <!--Coluna 2 Noticias-->
-                <div class="card">
-                    <div class="card-header ">
-                        <h3>Noticias</h3>
-                    </div>
-                    <div class="card-body">
-                        <% articles.forEach(article => { %>
-                            
-                            <a class="" href="/<%= article.slug %>"><%- article.title.substring(0, 20) %> ...</a><br>
-                            <p><%- article.body.substring(0, 60) %> ...</p><hr>
-                            
-                        <% }) %>
-                    </div>
-                </div>
-
-                
-                
-                
-            </div>
-
-
-    
-        </div>
-
-    </div>
     
     
 </body>
 
 <%- include('partials/footer.ejs') %>
 
-
-<!--
-
-<div class="header row m-2 m-2">
- <div class="col-12 col-md-6 align-self-center">
-Coluna para Respostas 
-<div class="col-md-3">
-    <div class="card p-3 mb-2">
-
--->
