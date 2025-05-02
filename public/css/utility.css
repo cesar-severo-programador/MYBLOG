@@ -13,6 +13,10 @@
     gap: 16px;
 }
 
+.gap-32 {
+    gap: 32px;
+}
+
 .grid-main {
     grid-template-columns:1.5fr 1.2fr;
 }

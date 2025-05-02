@@ -43,33 +43,104 @@
                 <h3>Confira também</h3>
                 <a href="#" class="grid grid-flow-col">
                     <strong>Ver Tudo</strong>
+                    <span></span>
                 </a>
-                <span></span>
+                
             </header>
 
             <div class="grid gap-16">
 
-                <figure>
-                    <span class="content-tag">Veicúlos</span>
-                    <img src="/assets/images/Image 06.png" alt="Imagem de um carro">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                        Optio, amet voluptas praesentium cum architecto aut voluptates, 
-                        aspernatur enim cupiditate suscipit atque eum eos 
-                        porro dolor incidunt culpa? Quod, dolor eos?</p>
-                </figure>
                 <% articles.slice(1).forEach(article => { %>
-                    <figure class="cardp">
+                    <figure class="">
                         <a href="/<%= article.slug %>">
+                            <span class="content-tag"><%= article.category ? article.category.title : '' %></span>
                             <img src="<%= article.image %>" alt="<%= article.title %>">
                             <figcaption>
-                                <span class="content-tag"><%= article.category ? article.category.title : '' %></span>
-                                <h2 class="text-lg"><%- article.title.substring(0, 200) %>..</h2>
-                                <p><%- article.body.substring(0, 200) %> ...</p>
+                                <h2 class="text-lg"><%- article.title.substring(0, 50) %>..</h2>
+                                <p><%- article.body.substring(0, 100) %> ...</p>
                             </figcaption>
                         </a>
                     </figure>
                 <% }) %>
 
+            </div>
+        </section>
+
+        <section id="ia">
+            <header class="grid grid-flow-col">
+                <h3>Destaque de hoje</h3>
+                <a href="#" class="grid grid-flow-col">
+                    <strong>Ver Tudo</strong>
+                    <span></span>
+                </a>
+            </header>
+            <div class="grid gap-32">
+                <% articles.slice(1).forEach(article => { %>
+                    <article class="grid grid-flow-col gap-16">
+                        
+                            <div>
+                                <span class="content-tag"><%= article.category ? article.category.title : '' %></span>
+                                <h3 class="text-lg">
+                                    <%- article.title.substring(0, 50) %>..
+                                </h3>
+                                <p class="text-sm"><%- article.body.substring(0, 200) %>..</p>
+                                
+                            </div>
+                            <div>
+                                <img src="<%= article.image %>" alt="<%= article.title %>">
+                            </div>
+                        
+                    </article>
+                <% }) %>
+            </div>
+        </section>
+
+        <!--
+        
+                <% articles.slice(1).forEach(article => { %>
+                    <figure class="">
+                        <a href="/<%= article.slug %>">
+                            <span class="content-tag"><%= article.category ? article.category.title : '' %></span>
+                            <img src="<%= article.image %>" alt="<%= article.title %>">
+                            <figcaption>
+                                <h2 class="text-lg"><%- article.title.substring(0, 50) %>..</h2>
+                                <p><%- article.body.substring(0, 100) %> ...</p>
+                            </figcaption>
+                        </a>
+                    </figure>
+                <% }) %>
+        -->
+
+        <div id="ads">
+            <img src="/assets/Ads.png" alt="Propaganda">
+        </div>
+
+        <section id="more">
+            <header class="grid grid-flow-col">
+                <h3>Viu isso aqui?</h3>
+                <a href="#" class="grid grid-flow-col">
+                    <strong>Ver Tudo</strong>
+                    <span></span>
+                </a>
+            </header>
+
+            <div class="grid gap-32">
+                <% articles.slice(1).forEach(article => { %>
+                    <article class="grid grid-flow-col gap-16">
+                        
+                            <div>
+                                <img src="<%= article.image %>" alt="<%= article.title %>">
+                            </div>
+                            <div>
+                                <span class="content-tag"><%= article.category ? article.category.title : '' %></span>
+                                <h3 class="text-lg">
+                                    <%- article.title.substring(0, 50) %>..
+                                </h3>                                
+                            </div>
+
+                       
+                    </article>
+                <% }) %>
             </div>
         </section>
     </main>
