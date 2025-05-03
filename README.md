@@ -22,6 +22,20 @@ Portal de blog criado com Node.js, Express e Sequelize. O sistema já conta com 
 - **express-session**
 - **slugify**
 
+## 📸 Capturas de tela
+
+### 🔹 Página inicial (Home)
+![Home principal](https://github.com/cesar-severo-programador/MYBLOG/blob/main/screenshot.png)
+
+### 🔹 Lista de Artigos da home
+![Home artigos](https://github.com/cesar-severo-programador/MYBLOG/blob/main/screenshot%202.png)
+
+### 🔹 Editor avançado de postagens (TinyMCE)
+![Editor de texto](https://github.com/cesar-severo-programador/MYBLOG/blob/main/screenshot%203.png)
+
+### 🔹 Lista de categorias no Dashboard
+![Dashboard categorias](https://github.com/cesar-severo-programador/MYBLOG/blob/main/screenshot%204.png)
+
 ## 📂 Estrutura do projeto
 
 ```
