@@ -53,14 +53,18 @@
 
             <div class="grid gap-16">
 
-                <% articles.slice(1).forEach(article => { %>
+                <% 
+                const indicesDesejados = [5,6,7];
+                articles.filter((article, index) => indicesDesejados.includes(index)).forEach(article => { %>
+
+                
                     <figure class="">
                         <a href="/<%= article.slug %>">
                             <span class="content-tag"><%= article.category ? article.category.title : '' %></span>
                             <img src="<%= article.image %>" alt="<%= article.title %>">
                             <figcaption>
                                 <h2 class="text-lg"><%- article.title.substring(0, 50) %>..</h2>
-                                <p><%- article.body.substring(0, 100) %> ...</p>
+                                <p><%- article.body.substring(0, 200) %> ...</p>
                             </figcaption>
                         </a>
                     </figure>
@@ -69,75 +73,91 @@
             </div>
         </section>
 
-        <section id="ai">
-            <header class="grid grid-flow-col">
-                <h3>Destaque de hoje</h3>
-                <a href="#" class="grid grid-flow-col">
-                    <strong>Ver Tudo</strong>
-                    <span></span>
-                </a>
-            </header>
-            <div class="grid gap-32">
-                <% articles.slice(1).forEach(article => { %>
-                    <article class="grid grid-flow-col gap-16">
-                        
-                            <div>
-                                <a href="/<%= article.slug %>">
-                                    <span class="content-tag"><%= article.category ? article.category.title : '' %></span>
-                                    <h3 class="text-lg">
-                                        <%- article.title.substring(0, 50) %>..
-                                    </h3>
-                                    <p class="text-sm"><%- article.body.substring(0, 200) %>..</p>
-                                </a>
-                            </div>
-                            <div>
-                                <a href="/<%= article.slug %>">
-                                    <img src="<%= article.image %>" alt="<%= article.title %>">
-                                </a>
-                            </div>
-                        
-                    </article>
-                <% }) %>
-            </div>
-        </section>
 
-        <aside>
-            <div id="ads">
-                <img src="/assets/Ads.png" alt="Propaganda">
-            </div>
-    
-            <section id="more">
+        <div id="final">
+            <section id="ai">
                 <header class="grid grid-flow-col">
-                    <h3>Viu isso aqui?</h3>
+                    <h3>Destaque de hoje</h3>
                     <a href="#" class="grid grid-flow-col">
                         <strong>Ver Tudo</strong>
                         <span></span>
                     </a>
                 </header>
-    
                 <div class="grid gap-32">
-                    <% articles.slice(0).forEach(article => { %>
+                    <%
+                    const indicefinial = [8,9,10,11];
+    
+                    articles.filter((article, index) => indicefinial.includes(index)).forEach(article => { %>
+    
+                    
+                    
                         <article class="grid grid-flow-col gap-16">
                             
                                 <div>
                                     <a href="/<%= article.slug %>">
-                                    <img src="<%= article.image %>" alt="<%= article.title %>">
-                                    </a> 
+                                        <span class="content-tag"><%= article.category ? article.category.title : '' %></span>
+                                        <h3 class="text-lg">
+                                            <%- article.title.substring(0, 50) %>..
+                                        </h3>
+                                        <p class="text-sm"><%- article.body.substring(0, 200) %>..</p>
+                                    </a>
                                 </div>
                                 <div>
                                     <a href="/<%= article.slug %>">
-                                    <span class="content-tag"><%= article.category ? article.category.title : '' %></span>
-                                    <h3 class="text-lg">
-                                        <%- article.title.substring(0, 200) %>..
-                                    </h3>   
-                                </a>                              
-                                </div> 
-                                                     
+                                        <img src="<%= article.image %>" alt="<%= article.title %>">
+                                    </a>
+                                </div>
+                            
                         </article>
                     <% }) %>
                 </div>
             </section>
-        </aside>
+    
+            <section id="aside">
+                <div id="ads">
+                    <img src="/assets/Ads.png" alt="Propaganda">
+                </div>
+        
+                <section id="more">
+                    <header class="grid grid-flow-col">
+                        <h3>Viu isso aqui?</h3>
+                        <a href="#" class="grid grid-flow-col">
+                            <strong>Ver Tudo</strong>
+                            <span></span>
+                        </a>
+                    </header>
+        
+                    <div class="grid gap-32">
+
+                        <% 
+                        const indicesaside = [12,13,14,15,16];
+
+                        articles.filter((article, index) => indicesaside.includes(index)).forEach(article => { %>
+                        
+                            <article class="grid grid-flow-col gap-16">
+                                
+                                    <div>
+                                        <a href="/<%= article.slug %>">
+                                        <img src="<%= article.image %>" alt="<%= article.title %>">
+                                        </a> 
+                                    </div>
+                                    <div>
+                                        <a href="/<%= article.slug %>">
+                                        <span class="content-tag"><%= article.category ? article.category.title : '' %></span>
+                                        <h3 class="text-lg">
+                                            <%- article.title.substring(0, 200) %>..
+                                        </h3>   
+                                    </a>                              
+                                    </div> 
+                                                         
+                            </article>
+                        <% }) %>
+                    </div>
+                </section>
+            </section>
+        </div>
+
+
 
     </main>
 
